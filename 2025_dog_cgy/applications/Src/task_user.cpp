@@ -1,9 +1,7 @@
 #include "task_user.h"
 #include "math.h"
  
-extern "C"
-{
-
+//extern "C"
 void walk_m(void *pvParameters) {
     TickType_t xLastWakeTime = xTaskGetTickCount();
     float t = 0.0f;
@@ -39,7 +37,7 @@ void walk_m(void *pvParameters) {
 
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(1));
     }
-}
+
 
 
 

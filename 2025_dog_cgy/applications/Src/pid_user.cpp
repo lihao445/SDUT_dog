@@ -19,11 +19,11 @@ pid_type_def pid_LF_p[2], pid_RF_p[2], pid_LB_p[2], pid_RB_p[2];
 // fp32 motor_RF[3]={20,0,0.5};
 // fp32 motor_LB[3]={20,0,0.5};    
 // fp32 motor_RB[3]={20,0,0.5};
-fp32 motor_V[3]={12,0, 0.04};
-fp32 motor_pos[3]={1.5,0, 1.1};
+fp32 motor_V[3]={11,0.0, 0.05};
+fp32 motor_pos[3]={1.05,0.0, 0.1};
 
 //定位PID三参
-fp32 motor_yaw_pid[3] = {120,0,0.1};
+fp32 motor_yaw_pid[3] = {12,0,0.1};
 fp32 motor_pos_x_pid[3] = {6,0,0};
 fp32 motor_pos_y_pid[3] = {6,0,0};
 
@@ -42,10 +42,10 @@ void PID_Controller::All_Device_Init(void)
 	this->core.PID_Init(&pid_LB_v[i], PID_POSITION, motor_V,10000, 6000);
 	this->core.PID_Init(&pid_RB_v[i], PID_POSITION, motor_V,10000, 6000);
 
-	this->core.PID_Init(&pid_LF_p[i], PID_POSITION, motor_pos,3000, 2000);
-	this->core.PID_Init(&pid_RF_p[i], PID_POSITION, motor_pos,3000, 2000);
-	this->core.PID_Init(&pid_LB_p[i], PID_POSITION, motor_pos,3000, 2000);
-	this->core.PID_Init(&pid_RB_p[i], PID_POSITION, motor_pos,3000, 2000);
+	this->core.PID_Init(&pid_LF_p[i], PID_POSITION, motor_pos,4000, 3000);
+	this->core.PID_Init(&pid_RF_p[i], PID_POSITION, motor_pos,4000, 3000);
+	this->core.PID_Init(&pid_LB_p[i], PID_POSITION, motor_pos,4000, 3000);
+	this->core.PID_Init(&pid_RB_p[i], PID_POSITION, motor_pos,4000, 3000);
 	// this->core.PID_Init(&pid_v_1[i], PID_POSITION, motor_speed_3508_pid, 10000, 6000);
 	// this->core.PID_Init(&pid_pos_1[i], PID_POSITION, motor_position_3508_pid, 4000, 3000);
 	}

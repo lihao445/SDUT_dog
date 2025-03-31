@@ -8,7 +8,12 @@ GaitParams state_gait_params[] ={  // 不同状态下的参数设置
     {-259.8f, 100.0f, 30.0f, 0.5f, 1.0f}
  }; 
 
-DetachedParam detached_params;
+DetachedParam detached_params={
+        {-259.8f, 100.0f, 30.0f, 0.5f, 1.0f},
+        {-259.8f, 100.0f, 30.0f, 0.5f, 1.0f},
+        {-259.8f, 100.0f, 30.0f, 0.5f, 1.0f},
+        {-259.8f, 100.0f, 30.0f, 0.5f, 1.0f}
+    };
 DetachedParam state_detached_params[] = {
     // 站立高度，步长，抬腿高度，飞行百分比，频率
     {
@@ -60,6 +65,11 @@ extern "C"
                 0.0f, 0.5f, 0.0f, 0.5f,
                 1.0f, 1.0f, 1.0f, 1.0f);
                 break;
+						case ROTAT_LEFT:
+						gait_detached(state_detached_params[TROT],
+                0.0f, 0.5f, 0.0f, 0.5f,
+                -1.0f, 1.0f, -1.0f, 1.0f);
+						break;
             default:
                 break;
         }
@@ -250,13 +260,13 @@ void InverseKinematics(float x, float y, float *theta1, float *theta2,float leg_
     float phi = atan2f(y, x);
 
     // 根据腿部运动方向计算关节角度
-    if(leg_direction == 1){
+    if(leg_direction == 1.0f){
         // 正向运动时，计算第一个关节的角度
         *theta1 = phi - beta + M_PI;
         // 正向运动时，计算第二个关节的角度
         *theta2 = phi + beta;
     }
-    else if(leg_direction == -1){
+    else if(leg_direction == -1.0f){
         // 反向运动时，计算第二个关节的角度
         *theta2 = -(phi - beta + M_PI);
         // 反向运动时，计算第一个关节的角度

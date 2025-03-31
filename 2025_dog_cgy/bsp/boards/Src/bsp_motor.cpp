@@ -28,15 +28,15 @@ void ControlLegMotors() {
         IsMotoReadyOrNot= NotReady;
     }
 		can_bus.cmd.CAN1_Front(
-			pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_LF( ref_the1[0], 0), 
-            pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_LF(-ref_the2[0], 1),
+	    pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_LF( ref_the1[0], 0), 
+      pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_LF(-ref_the2[0], 1),
 			pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_RF( ref_the2[1], 0), 
 			pid_controller.can_motor.CAN1_VP_Dual_Loop_Realize_RF(-ref_the1[1], 1)
 		);
 		
 		can_bus.cmd.CAN2_Front(
 			pid_controller.can_motor.CAN2_VP_Dual_Loop_Realize_RB(-ref_the2[2], 0),
-			pid_controller.can_motor.CAN2_VP_Dual_Loop_Realize_RB(ref_the1[2], 1),
+			pid_controller.can_motor.CAN2_VP_Dual_Loop_Realize_RB(ref_the1[2], 1),//0,0
 			pid_controller.can_motor.CAN2_VP_Dual_Loop_Realize_LB(-ref_the1[3], 0), 
 			pid_controller.can_motor.CAN2_VP_Dual_Loop_Realize_LB( ref_the2[3], 1)
         );

@@ -49,8 +49,9 @@
 
 /* USER CODE END Variables */
 osThreadId WALKHandle;
-osThreadId TROTHandle;
+osThreadId PostureControlHandle;
 osThreadId MOTOR_CTRLHandle;
+osThreadId Remote_controlHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -60,6 +61,7 @@ osThreadId MOTOR_CTRLHandle;
 void walk_m(void const * argument);
 void PostureControl_task(void const * argument);
 void MotorControl_task(void const * argument);
+void RC_task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -107,16 +109,20 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of WALK */
-  osThreadDef(WALK, walk_m, osPriorityNormal, 0, 128);
-  WALKHandle = osThreadCreate(osThread(WALK), NULL);
+//  osThreadDef(WALK, walk_m, osPriorityNormal, 0, 128);
+//  WALKHandle = osThreadCreate(osThread(WALK), NULL);
 
-  /* definition and creation of TROT */
-  osThreadDef(TROT, PostureControl_task, osPriorityAboveNormal, 0, 256);
-  TROTHandle = osThreadCreate(osThread(TROT), NULL);
+  /* definition and creation of PostureControl */
+  osThreadDef(PostureControl, PostureControl_task, osPriorityAboveNormal, 0, 256);
+  PostureControlHandle = osThreadCreate(osThread(PostureControl), NULL);
 
   /* definition and creation of MOTOR_CTRL */
   osThreadDef(MOTOR_CTRL, MotorControl_task, osPriorityNormal, 0, 128);
   MOTOR_CTRLHandle = osThreadCreate(osThread(MOTOR_CTRL), NULL);
+
+  /* definition and creation of Remote_control */
+  osThreadDef(Remote_control, RC_task, osPriorityHigh, 0, 128);
+  Remote_controlHandle = osThreadCreate(osThread(Remote_control), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -176,6 +182,24 @@ __weak void MotorControl_task(void const * argument)
     osDelay(1);
   }
   /* USER CODE END MotorControl_task */
+}
+
+/* USER CODE BEGIN Header_RC_task */
+/**
+* @brief Function implementing the Remote_control thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RC_task */
+__weak void RC_task(void const * argument)
+{
+  /* USER CODE BEGIN RC_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END RC_task */
 }
 
 /* Private application code --------------------------------------------------*/

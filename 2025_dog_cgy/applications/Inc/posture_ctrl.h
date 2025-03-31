@@ -1,5 +1,5 @@
-#ifndef _POSTURE_CTRL_H_
-#define _POSTURE_CTRL_H_
+#ifndef __POSTURE_CTRL_H_
+#define __POSTURE_CTRL_H_
 
 #ifdef __cplusplus
 extern "C"
@@ -46,9 +46,11 @@ extern DetachedParam state_detached_params[];
 
 enum States {
     TROT=0,
+		STOP=1,
     REALSE=2,
-    STOP=1,
-    START=3
+    START=3,
+		ROTAT_LEFT=4,
+    ROTAT_RIGHT=5,
 };
 extern enum States state;
 

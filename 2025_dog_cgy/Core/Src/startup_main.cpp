@@ -38,7 +38,7 @@ void startup_main(void)
 	
 	//vTaskStartScheduler();	
 
-#if isRTOS==1    	//如果是裸机开发为0，rtos开发为1
+#if isRTOS==0    	//如果是裸机开发为0，rtos开发为1
 	for(;;)  //等同于while(true)
 	{
 		//Dog_Init();
