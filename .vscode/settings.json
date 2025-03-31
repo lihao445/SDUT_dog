@@ -1,0 +1,5 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=e:\\vinci_cgy\\SUDT_vinci_DOG\\SDUT_dog\\2024_dog_czy\\MDK-ARM\\out\\2024_Shadow Knight\\DOGNEW"
+    ]
+}

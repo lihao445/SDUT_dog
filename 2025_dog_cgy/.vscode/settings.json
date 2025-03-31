@@ -1,0 +1,5 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=e:\\vinci_cgy\\SUDT_vinci_DOG\\2025_dog_cgy\\MDK-ARM\\out\\2025_dog_cgy\\2025dogcgy"
+    ]
+}
